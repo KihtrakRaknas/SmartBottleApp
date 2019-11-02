@@ -29,7 +29,9 @@ export default class Regform extends React.Component {
 const styles = StyleSheet.create({
   regform: {
     alignSelf: 'stretch',
-
+    paddingTop: 120,
+    paddingLeft: 60,
+    paddingRight: 60
   },
   headerbox: {
       marginBottom: 60,
