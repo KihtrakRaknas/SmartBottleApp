@@ -14,12 +14,12 @@ export default class WaterConsumption extends React.Component {
                     <View style={styles.verticalitem}>
                         <ProgressCircle
                             percent={30}
-                            radius={50}
+                            radius={70}
                             borderWidth={8}
                             color="#03adfc"
                             shadowColor="#999"
                             bgColor="#fff">
-                            <Text style={{ fontSize: 22, color: '#000', fontWeight: '200'}}>{'30%'}</Text>
+                            <Text style={{ fontSize: 28, color: '#000', fontWeight: '200'}}>{'30%'}</Text>
                         </ProgressCircle>
                     </View>
                     <View style={styles.verticalitem}>
@@ -39,7 +39,7 @@ export default class WaterConsumption extends React.Component {
                     </View>
                 </View>
             </CardView>
-            <View style={styles.lineStyle}></View>
+            {/* <View style={styles.lineStyle}></View>
             <View style={styles.verticalcontainer}>
                 <TouchableOpacity style={backgroundColor='#03adfc'}>
                     <Icon.Button name='arrow-left' size={25} color='white'/>
@@ -53,7 +53,7 @@ export default class WaterConsumption extends React.Component {
                     <Icon.Button name='arrow-right' size={25} color='white'/>
                 </TouchableOpacity>
 
-            </View>
+            </View> */}
         </View>
     );
   }
