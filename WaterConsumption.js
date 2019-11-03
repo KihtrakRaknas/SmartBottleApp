@@ -1,25 +1,77 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Card, AsyncStorage } from 'react-native';
 
 import CardView from 'react-native-rn-cardview'
 import ProgressCircle from 'react-native-progress-circle'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class WaterConsumption extends React.Component {
+
+   constructor() {
+    super();
+    this.state = {total:1,today:1};
+    AsyncStorage.getItem("email").then(email => {
+        fetch('https://smartbottleserver.herokuapp.com/total', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email
+            }),
+        }).then((response) => {
+                return response.json()
+        })
+        .then((responseJson) => {
+            console.log(responseJson);
+            this.setState({
+                total: responseJson.cups
+            });
+        })
+        .catch((error) => {
+        console.error(error);
+        });
+    })
+
+        fetch('https://smartbottleserver.herokuapp.com/today', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            return response.json()
+        })
+        .then((responseJson) => {
+            console.log(responseJson);
+            this.setState({
+                today: responseJson.drank
+            });
+        })
+        .catch((error) => {
+        console.error(error);
+    })
+
+    
+    }
+   
+
   render() {
+    console.log("FJLSKDFJLDKSFDSKLJFKLDSJFKL" + this.state);
     return (
         <View style={styles.container}>
             <CardView cardElevation={4} maxCardElevation={4} radius={40} backgroundColor={'#fff'} style={styles.item}>
                  <View style={styles.verticalcontainer}>
                     <View style={styles.verticalitem}>
                         <ProgressCircle
-                            percent={30}
+                            percent={this.state.today/this.state.total * 100}
                             radius={70}
                             borderWidth={8}
                             color="#03adfc"
                             shadowColor="#999"
                             bgColor="#fff">
-                            <Text style={{ fontSize: 28, color: '#000', fontWeight: '200'}}>{'30%'}</Text>
+                            <Text style={{ fontSize: 28, color: '#000', fontWeight: '200'}}>{this.state.today/this.state.total * 100}%</Text>
                         </ProgressCircle>
                     </View>
                     <View style={styles.verticalitem}>
