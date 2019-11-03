@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, FlatList, Picker, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 var  items  = [
 	{
@@ -36,8 +37,22 @@ var  items  = [
 	},
 ];
 
-export default class AddFood extends React.Component {  
+export default class AddFood extends React.Component { 
+  constructor(){
+    super();
+    this.state = {results:[]}
+  } 
   render() {
+    var list = null;
+    if(this.state.results.length>0)
+      for(item of this.state.results){
+          list.push(<ListItem
+            title={item.name}
+            subtitle={item.water}
+            leftAvatar={item.image?{ source: { uri: item.image} }:null}
+            bottomDivider
+          />)
+      }
     return (
         // <View style={styles.container}>
 
@@ -65,6 +80,9 @@ export default class AddFood extends React.Component {
         <View style={styles.container}>
           <View style={styles.textinputbox}>
             <TextInput style={styles.textinput} placeholder="Enter a food name here" placeholderTextColor="#888" underlineColorAndroid={'transparent'}></TextInput>
+          </View>
+          <View>
+            {list}
           </View>
         </View>
     );
