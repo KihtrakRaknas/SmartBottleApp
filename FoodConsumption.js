@@ -1,54 +1,7 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import Constants from 'expo-constants';
 
-const DATA = [
-                {
-                    id: '1',
-                    title: 'Orange',
-                    water: '0.03L'
-                }, 
-                {
-                    id: '2',
-                    title: 'Apple',
-                    water: '0.01'
-                },
-                {
-                    id: '3',
-                    title: 'Cereal',
-                    water: '0.01'
-                },
-                {
-                    id: '4',
-                    title: 'Watermelon',
-                    water: '0.13L'
-                }, 
-                {
-                    id: '5',
-                    title: '',
-                    water: '0.07L'
-                },
-                {
-                    id: '6',
-                    title: 'Rice',
-                    water: '0.06L'
-                },
-                {
-                    id: '7',
-                    title: 'Banana',
-                    water: '0.0L'
-                }, 
-                {
-                    id: '8',
-                    title: 'Pasta',
-                    water: '.0072L'
-                },
-                {
-                    id: '9',
-                    title: 'Pear',
-                    water: '0.02L'
-                }
-             ]
 
 function Item({title, water}) {
     return (
@@ -59,12 +12,44 @@ function Item({title, water}) {
 }
 
 export default class FoodConsumption extends React.Component {
+constructor(){
+    super();
+    this.state = {data:[]}
+}
+    
+componentWillMount = () => {
+
+    const didBlurSubscription = this.props.navigation.addListener(
+        'didFocus',
+        payload => {
+            this.setState()
+            console.log("back")
+          console.debug('didBlur', payload);
+          AsyncStorage.getItem('food').then((food)=>{
+                if(food){
+                    this.setState({data:JSON.parse(food)});
+                    console.log(JSON.parse(food))
+                }
+            })
+        }
+      );
+}
+
+componentWillUnmount = () =>{
+    didBlurSubscription.remove();
+}
+
   render() {
+    AsyncStorage.getItem('food').then((food)=>{
+        if(food){
+            this.setState({data:JSON.parse(food)});
+        }
+    })
     return (
         <View style={styles.container}>
             <SafeAreaView style={styles.listcontainer}>
                 <FlatList
-                    data={DATA}
+                    data={this.state.data}
                     renderItem={({item}) =><Item title={item.title} water={item.water}/>}
                     keyExtractor={item => item.id}
                 />

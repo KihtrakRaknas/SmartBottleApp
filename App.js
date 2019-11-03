@@ -45,7 +45,7 @@ export default class App extends React.Component {
       const App = createAppContainer(createBottomTabNavigator({
         Dashboard: WaterConsumption,
         Food: foodNav,
-        Settings: FoodConsumption,
+        Settings: Settings,
       },
       {
         defaultNavigationOptions: ({ navigation }) => ({

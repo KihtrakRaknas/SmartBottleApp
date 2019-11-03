@@ -37,6 +37,10 @@ export default class Regform extends React.Component {
       </KeyboardAvoidingView>
     );
   }
+  signOut = () =>{
+      AsyncStorage.clear();
+      
+  }
 }
 
 const styles = StyleSheet.create({
