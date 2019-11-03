@@ -1,9 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, AsyncStorage, Alert} from 'react-native';
 
+const data = [
+    {label: '100', value: '100'},
+    {label: '100', value: '100'},
+    {label: '100', value: '100'},
+    {label: '100', value: '100'},
+    {label: '100', value: '100'},
+    {label: '100', value: '100'},
+    {label: '100', value: '100'}
+]
 export default class Regform extends React.Component {
     constructor(){
         super();
+        this.state = {username:"",email:"",password:"", weight:'', age:''};
+        updateWeight=(weight) => {
+            this.setState({weight: weight})
+        }
         this.state = {username:"",email:"",password:"",loading:false};
     }
   render() {
@@ -20,6 +33,12 @@ export default class Regform extends React.Component {
             </View>
             <View style={styles.textinputbox}>
                 <TextInput secureTextEntry style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+            </View>
+            <View style={styles.textinputbox}>
+                <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Age" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
+            </View>
+            <View style={styles.textinputbox}>
+                <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Weight" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({age})} value={this.state.age}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signIn}>
                 {!this.state.loading?<Text style={styles.btntext}>Sign Up</Text>:<ActivityIndicator/>}
@@ -38,7 +57,8 @@ export default class Regform extends React.Component {
         },
         body: JSON.stringify({
             fullName: this.state.username,
-            weight: 'yourOtherValue',
+            weight: this.state.weight,
+            age: this.state.age,
             email: this.state.email,
             password: this.state.password
         }),
@@ -75,6 +95,9 @@ const styles = StyleSheet.create({
     paddingTop: 120,
     paddingLeft: 60,
     paddingRight: 60
+  },
+  picker: {
+      alignSelf: 'stretch',
   },
   headerbox: {
       marginBottom: 60,

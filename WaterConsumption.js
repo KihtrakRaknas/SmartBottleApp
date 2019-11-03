@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from 'react-native';
 
 import CardView from 'react-native-rn-cardview'
 import ProgressCircle from 'react-native-progress-circle'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class WaterConsumption extends React.Component {
   render() {
@@ -34,20 +35,24 @@ export default class WaterConsumption extends React.Component {
             <CardView cardElevation={10} maxCardElevation={10} radius={40} backgroundColor={'#fff'} style={styles.item}>
                 <View style={styles.verticalcontainer}>
                     <View >
-                        <Text>Chart</Text>
+                        <Image source={require('./graph.png')}/>
                     </View>
                 </View>
             </CardView>
+            <View style={styles.lineStyle}></View>
             <View style={styles.verticalcontainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.btntext}>Previous</Text>
+                <TouchableOpacity style={backgroundColor='#03adfc'}>
+                    <Icon.Button name='arrow-left' size={25} color='white'/>
                 </TouchableOpacity>
-                <View style={styles.lineStyle}>
-                    <Text></Text>
+                <View>
+                    <Text style={styles.lineStyle}>
+
+                    </Text>
                 </View>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.btntext}>Next</Text>
+                <TouchableOpacity>
+                    <Icon.Button name='arrow-right' size={25} color='white'/>
                 </TouchableOpacity>
+
             </View>
         </View>
     );
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     verticalitem: {
-        width: '50%',
+        width: '100%',
         height: '100%',
         flex: 1,
         justifyContent: 'center',
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     infotext: {
         width: '100%',
         height: '25%',
-        fontSize: 24,
+        fontSize: 20,
         color: '#000',
         textAlign: 'center',
         // textDecorationLine: 'underline',
@@ -108,7 +113,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     lineStyle: {
-        padding: 10
+        margin: 30
+    },
+    botPadding: {
+        paddingBottom: 10
     }
 });
 

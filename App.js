@@ -12,6 +12,7 @@ import WaterConsumption from './WaterConsumption'
 import FoodConsumption from './FoodConsumption'
 import AddFood from './AddFood'
 import { SplashScreen } from 'expo';
+import Settings from './Settings'
 
 
 export default class App extends React.Component {
