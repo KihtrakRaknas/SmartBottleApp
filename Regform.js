@@ -9,18 +9,17 @@ export default class Regform extends React.Component {
                 <Text style={styles.header}>Registration</Text>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Username" placeholderTextColor="#fff" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Username" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#fff" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#fff" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
             </View>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.btntext}>Sign Up</Text>
             </TouchableOpacity>
-
       </View>
     );
   }
@@ -35,19 +34,18 @@ const styles = StyleSheet.create({
   },
   headerbox: {
       marginBottom: 60,
-      borderBottomColor: '#199187',
+      borderBottomColor: '#03adfc',
       borderBottomWidth: 2,
   },
   header: {
       fontSize: 36,
       justifyContent: 'center',
-      color: '#fff',
+      color: '#000',
       paddingBottom: 10,
-      borderBottomColor: '#199187',
-      borderBottomWidth: 5,
+      fontWeight: "bold"
   },
   textinputbox: {
-      borderBottomColor:'#f8f8f8',
+      borderBottomColor:'#000',
       borderBottomWidth: 1,
       marginBottom: 40,
   },
@@ -55,18 +53,20 @@ const styles = StyleSheet.create({
       alignSelf: 'stretch',
       fontSize: 24,
       height: 40,
+      fontWeight: '200',
       marginBottom: 0,
-      color: '#fff',
+      color: '#000',
   },
   button: {
       alignSelf: 'stretch',
       alignItems: 'center',
       padding: 20,
-      backgroundColor: '#59cbbd',
+      backgroundColor: '#03adfc',
       marginTop: 30,
   },
   btntext: {
       color: '#fff',
-      fontWeight: 'bold',
+      fontSize: 18,
+      fontWeight: '200',
   }
 });
