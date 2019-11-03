@@ -14,7 +14,8 @@ export default class App extends React.Component {
   }
   constructor(){
     super();
-    AsyncStorage.getItem("email",(email)=>{
+    AsyncStorage.getItem("email").then((email)=>{
+      console.log(email)
       if(email)
         this.setState({email:email})
       else
