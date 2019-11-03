@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, FlatList, Picker, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-import  SearchableDropdown from 'react-native-searchable-dropdown';
+import SearchableDropDown from 'react-native-searchable-dropdown';
 
 var  items  = [
 	{
@@ -64,9 +64,54 @@ export default class AddFood extends React.Component {
         //     <Text style = {styles.text}>{this.state.time + " selected."}</Text>
 
         //  </View>
+        // <View style={styles.container}>
+        //   <View style={styles.textinputbox}>
+        //     <TextInput style={styles.textinput} placeholder="Enter a food name here" placeholderTextColor="#888" underlineColorAndroid={'transparent'}></TextInput>
+        //   </View>
+        // </View>
         <View style={styles.container}>
-          <View style={styles.textinputbox}>
-            <TextInput style={styles.textinput} placeholder="Enter a food name here" placeholderTextColor="#888" underlineColorAndroid={'transparent'}></TextInput>
+          <SearchableDropDown
+          onTextChange={(text) =>  text}
+          onItemSelect={(item) =>  JSON.stringify(item)}
+          // containerStyle={{
+          //   padding: 5
+          // }}
+          textInputStyle={{
+            width: 300,
+            padding: 12,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5
+          }}
+          itemStyle={{
+            padding: 10,
+              marginTop: 2,
+            backgroundColor: '#ddd',
+            borderColor: '#bbb',
+            borderWidth: 1,
+            borderRadius:5
+          }}
+          itemTextStyle={{
+          color: '#222'
+          }}
+          itemsContainerStyle={{
+            maxHeight: 220
+          }}
+          items={items}
+          placeholder="Input food name here..."
+          textAlign='center'
+          resetValue={false}
+          underlineColorAndroid='transparent' />
+          <View style={styles.verticalcontainer}>
+            <View style={styles.verticalitem}>
+              <Text style={styles.textinput}>Image</Text>
+            </View>
+            <View style={styles.verticalitem}>
+              <Text style={styles.textinput}>Name</Text>
+            </View>
+            <View style={styles.verticalitem}>
+              <Text style={styles.textinput}>Water Content</Text>
+            </View>
           </View>
         </View>
     );
@@ -74,18 +119,21 @@ export default class AddFood extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
+      container: {
+        paddingTop: 80,
+        padding: 20,
         flex: 1,
-        // justifyContent: 'center',
-        paddingTop: 60,
+        flexDirection: 'column',
+        flexWrap: 'nowrap',
         alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-      },
+        justifyContent: 'center',
+        width: '100%'
+    },
       textinput: {
         alignSelf: 'stretch',
         fontSize: 24,
         height: 40,
-        width: 250,
+        width: '100%',
         fontWeight: '200',
         marginBottom: 0,
         color: '#000',
@@ -95,5 +143,17 @@ const styles = StyleSheet.create({
       borderBottomColor:'#000',
       borderBottomWidth: 1,
       marginBottom: 40,
+  },
+  verticalcontainer: {
+    flex: 1,
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  verticalitem: {
+    width: '50%',
+    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });
