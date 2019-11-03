@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, FlatList, Picker, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 import SearchableDropDown from 'react-native-searchable-dropdown';
 
@@ -38,8 +39,22 @@ var  items  = [
 	},
 ];
 
-export default class AddFood extends React.Component {  
+export default class AddFood extends React.Component { 
+  constructor(){
+    super();
+    this.state = {results:[]}
+  } 
   render() {
+    var list = null;
+    if(this.state.results.length>0)
+      for(item of this.state.results){
+          list.push(<ListItem
+            title={item.name}
+            subtitle={item.water}
+            leftAvatar={item.image?{ source: { uri: item.image} }:null}
+            bottomDivider
+          />)
+      }
     return (
         // <View style={styles.container}>
 
@@ -112,6 +127,9 @@ export default class AddFood extends React.Component {
             <View style={styles.verticalitem}>
               <Text style={styles.textinput}>Water Content</Text>
             </View>
+          </View>
+          <View>
+            {list}
           </View>
         </View>
     );

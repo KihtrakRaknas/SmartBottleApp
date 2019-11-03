@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView} from 'react-native';
 
 const data = [
     {label: '100', value: '100'},
@@ -17,10 +17,11 @@ export default class Regform extends React.Component {
         updateWeight=(weight) => {
             this.setState({weight: weight})
         }
+        this.state = {username:"",email:"",password:"",loading:false};
     }
   render() {
     return (
-      <View style={styles.regform}>
+      <KeyboardAvoidingView style={styles.regform} behavior="position">
             <View style={styles.headerbox}>
                 <Text style={styles.header}>Registration</Text>
             </View>
@@ -31,21 +32,20 @@ export default class Regform extends React.Component {
                 <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(email) => this.setState({email})} value={this.state.email}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+                <TextInput secureTextEntry style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
             </View>
             <View style={styles.textinputbox}>
                 <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Weight" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signIn}>
-                <Text style={styles.btntext}>Sign Up</Text>
+                {!this.state.loading?<Text style={styles.btntext}>Sign Up</Text>:<ActivityIndicator/>}
             </TouchableOpacity>
-
-            
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 
   signIn = () =>{
+      this.setState()
     fetch('https://mywebsite.com/endpoint/', {
         method: 'POST',
         headers: {
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 20,
       backgroundColor: '#03adfc',
-      marginTop: 30,
+      marginVertical: 30,
+      
   },
   btntext: {
       color: '#fff',

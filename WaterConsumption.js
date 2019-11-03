@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from 'react-native';
 
 import CardView from 'react-native-rn-cardview'
 import ProgressCircle from 'react-native-progress-circle'
@@ -34,7 +34,7 @@ export default class WaterConsumption extends React.Component {
             <CardView cardElevation={10} maxCardElevation={10} radius={40} backgroundColor={'#fff'} style={styles.item}>
                 <View style={styles.verticalcontainer}>
                     <View >
-                        <Text>Chart</Text>
+                        <Image source={require('./graph.png')}/>
                     </View>
                 </View>
             </CardView>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     verticalitem: {
-        width: '50%',
+        width: '100%',
         height: '100%',
         flex: 1,
         justifyContent: 'center',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     infotext: {
         width: '100%',
         height: '25%',
-        fontSize: 24,
+        fontSize: 20,
         color: '#000',
         textAlign: 'center',
         // textDecorationLine: 'underline',
