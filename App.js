@@ -13,7 +13,7 @@ export default class App extends React.Component {
           {/* <Regform /> */}
           {/* <WaterConsumption/> */}
           {/* <FoodConsumption/> */}
-          <AddFood/>
+          <Regform/>
       </View>
     );
   }

@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default class Regform extends React.Component {
+    constructor(){
+        super();
+        this.state = {username:"",email:"",password:""};
+    }
   render() {
     return (
       <View style={styles.regform}>
@@ -9,19 +13,43 @@ export default class Regform extends React.Component {
                 <Text style={styles.header}>Registration</Text>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Username" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Full Name" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(username) => this.setState({username})} value={this.state.username}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(email) => this.setState({email})} value={this.state.email}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'}/>
+                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
             </View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={this.signIn}>
                 <Text style={styles.btntext}>Sign Up</Text>
             </TouchableOpacity>
       </View>
     );
+  }
+
+  signIn = () =>{
+    fetch('https://mywebsite.com/endpoint/', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            fullName: this.state.username,
+            weight: 'yourOtherValue',
+            email: this.state.username,
+            password: this.state.password
+        }),
+    }).then((response) => response.json())
+    .then((responseJson) => {
+        if(responseJson && responseJson.status == "complete"){
+            //sign in
+        }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 }
 

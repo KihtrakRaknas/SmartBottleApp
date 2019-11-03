@@ -1,8 +1,6 @@
 import React from 'react';
 import { SafeAreaView, FlatList, Picker, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-import  SearchableDropdown from 'react-native-searchable-dropdown';
-
 var  items  = [
 	{
 		id: 1,
