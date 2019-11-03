@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView} from 'react-native';
 
 export default class Regform extends React.Component {
     constructor(){
         super();
-        this.state = {username:"",email:"",password:""};
+        this.state = {username:"",email:"",password:"",loading:false};
     }
   render() {
     return (
-      <View style={styles.regform}>
+      <KeyboardAvoidingView style={styles.regform} behavior="position">
             <View style={styles.headerbox}>
                 <Text style={styles.header}>Registration</Text>
             </View>
@@ -19,16 +19,17 @@ export default class Regform extends React.Component {
                 <TextInput style={styles.textinput} placeholder="Email" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(email) => this.setState({email})} value={this.state.email}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+                <TextInput secureTextEntry style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signIn}>
-                <Text style={styles.btntext}>Sign Up</Text>
+                {!this.state.loading?<Text style={styles.btntext}>Sign Up</Text>:<ActivityIndicator/>}
             </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 
   signIn = () =>{
+      this.setState()
     fetch('https://mywebsite.com/endpoint/', {
         method: 'POST',
         headers: {
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 20,
       backgroundColor: '#03adfc',
-      marginTop: 30,
+      marginVertical: 30,
+      
   },
   btntext: {
       color: '#fff',
