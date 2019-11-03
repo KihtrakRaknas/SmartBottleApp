@@ -10,10 +10,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          {/* <Regform /> */}
+          <Regform />
           {/* <WaterConsumption/> */}
           {/* <FoodConsumption/> */}
-          <AddFood/>
+          {/* <AddFood/> */}
       </View>
     );
   }

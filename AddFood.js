@@ -148,12 +148,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   verticalitem: {
     width: '50%',
     height: '100%',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+   
   },
 });
