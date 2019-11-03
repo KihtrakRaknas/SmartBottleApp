@@ -13,7 +13,7 @@ const data = [
 export default class Regform extends React.Component {
     constructor(){
         super();
-        this.state = {username:"",email:"",password:"", weight:''};
+        this.state = {username:"",email:"",password:"", weight:'', age:''};
         updateWeight=(weight) => {
             this.setState({weight: weight})
         }
@@ -38,7 +38,7 @@ export default class Regform extends React.Component {
                 <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Age" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
             </View>
             <View style={styles.textinputbox}>
-                <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Weight" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
+                <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Weight" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({age})} value={this.state.age}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signIn}>
                 {!this.state.loading?<Text style={styles.btntext}>Sign Up</Text>:<ActivityIndicator/>}
@@ -57,7 +57,8 @@ export default class Regform extends React.Component {
         },
         body: JSON.stringify({
             fullName: this.state.username,
-            weight: 'yourOtherValue',
+            weight: this.state.weight,
+            age: this.state.age,
             email: this.state.email,
             password: this.state.password
         }),
