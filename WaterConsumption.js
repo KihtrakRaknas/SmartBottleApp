@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Card } from
 
 import CardView from 'react-native-rn-cardview'
 import ProgressCircle from 'react-native-progress-circle'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class WaterConsumption extends React.Component {
   render() {
@@ -38,16 +39,20 @@ export default class WaterConsumption extends React.Component {
                     </View>
                 </View>
             </CardView>
+            <View style={styles.lineStyle}></View>
             <View style={styles.verticalcontainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.btntext}>Previous</Text>
+                <TouchableOpacity style={backgroundColor='#03adfc'}>
+                    <Icon.Button name='arrow-left' size={25} color='white'/>
                 </TouchableOpacity>
-                <View style={styles.lineStyle}>
-                    <Text></Text>
+                <View>
+                    <Text style={styles.lineStyle}>
+
+                    </Text>
                 </View>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.btntext}>Next</Text>
+                <TouchableOpacity>
+                    <Icon.Button name='arrow-right' size={25} color='white'/>
                 </TouchableOpacity>
+
             </View>
         </View>
     );
@@ -108,7 +113,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     lineStyle: {
-        padding: 10
+        margin: 30
+    },
+    botPadding: {
+        paddingBottom: 10
     }
 });
 

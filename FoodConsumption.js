@@ -5,48 +5,48 @@ import Constants from 'expo-constants';
 const DATA = [
                 {
                     id: '1',
-                    title: 'First Item',
-                    water: '0.22L'
+                    title: 'Orange',
+                    water: '0.03L'
                 }, 
                 {
                     id: '2',
-                    title: 'Second Item',
-                    water: '0.07L'
+                    title: 'Apple',
+                    water: '0.01'
                 },
                 {
                     id: '3',
-                    title: 'Third Item',
-                    water: '0.16L'
+                    title: 'Cereal',
+                    water: '0.01'
                 },
                 {
                     id: '4',
-                    title: 'First Item',
-                    water: '0.22L'
+                    title: 'Watermelon',
+                    water: '0.13L'
                 }, 
                 {
                     id: '5',
-                    title: 'Second Item',
+                    title: '',
                     water: '0.07L'
                 },
                 {
                     id: '6',
-                    title: 'Third Item',
-                    water: '0.16L'
+                    title: 'Rice',
+                    water: '0.06L'
                 },
                 {
                     id: '7',
-                    title: 'First Item',
-                    water: '0.22L'
+                    title: 'Banana',
+                    water: '0.0L'
                 }, 
                 {
                     id: '8',
-                    title: 'Second Item',
-                    water: '0.07L'
+                    title: 'Pasta',
+                    water: '.0072L'
                 },
                 {
                     id: '9',
-                    title: 'Third Item',
-                    water: '0.16L'
+                    title: 'Pear',
+                    water: '0.02L'
                 }
              ]
 
