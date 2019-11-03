@@ -79,13 +79,38 @@ export default class AddFood extends React.Component {
         //  </View>
         <View style={styles.container}>
           <View style={styles.textinputbox}>
-            <TextInput style={styles.textinput} placeholder="Enter a food name here" placeholderTextColor="#888" underlineColorAndroid={'transparent'}></TextInput>
+            <TextInput onChangeText={(text) => this.search(text)} style={styles.textinput} placeholder="Enter a food name here" placeholderTextColor="#888" underlineColorAndroid={'transparent'}></TextInput>
           </View>
           <View>
             {list}
           </View>
         </View>
     );
+  }
+  search = (text) =>{
+    fetch('https://smartbottleserver.herokuapp.com/searchFood', {
+      method: 'POST',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        foodName: text,
+      }),
+  }).then((response) => {
+      try{
+          return response.json()
+      }catch(err){
+          Alert.alert("err")
+      }
+  })
+  .then((responseJson) => {
+      console.log(responseJson)
+      this.setState({results:responseJson})
+  })
+  .catch((error) => {
+    console.error(error);
+  });
   }
 }
 
