@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, AsyncStorage, Alert} from 'react-native';
 
 const data = [
     {label: '100', value: '100'},
@@ -45,8 +45,8 @@ export default class Regform extends React.Component {
   }
 
   signIn = () =>{
-      this.setState()
-    fetch('https://mywebsite.com/endpoint/', {
+      this.setState({loading:true})
+    fetch('https://smartbottleserver.herokuapp.com/newUser', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -55,13 +55,28 @@ export default class Regform extends React.Component {
         body: JSON.stringify({
             fullName: this.state.username,
             weight: 'yourOtherValue',
-            email: this.state.username,
+            email: this.state.email,
             password: this.state.password
         }),
-    }).then((response) => response.json())
+    }).then((response) => {
+        try{
+            return response.json()
+        }catch(err){
+            Alert.alert("Invalid Credentials")
+            this.setState({loading:false});
+        }
+    })
     .then((responseJson) => {
+        console.log(responseJson)
         if(responseJson && responseJson.status == "complete"){
-            //sign in
+            this.setState({loading:false})
+            AsyncStorage.setItem("email",this.state.email).then(()=>{
+                console.log(this.state.email)
+                this.props.func()
+            })
+        }else{
+            Alert.alert("Invalid Credentials")
+            this.setState({loading:false});
         }
     })
     .catch((error) => {
