@@ -35,6 +35,9 @@ export default class Regform extends React.Component {
                 <TextInput secureTextEntry style={styles.textinput} placeholder="Password" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
             </View>
             <View style={styles.textinputbox}>
+                <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Age" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
+            </View>
+            <View style={styles.textinputbox}>
                 <TextInput keyboardType='numeric' style={styles.textinput} placeholder="Weight" placeholderTextColor="#888" underlineColorAndroid={'transparent'} onChangeText={(weight) => this.setState({weight})} value={this.state.weight}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signIn}>

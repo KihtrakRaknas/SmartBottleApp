@@ -70,7 +70,7 @@ export default class FoodConsumption extends React.Component {
                 />
             </SafeAreaView>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigate('AddFood')}>
                 <Text style={styles.btntext}>Add Food to List</Text>
             </TouchableOpacity>
         </View>
